@@ -1,0 +1,57 @@
+buildscript {
+    repositories {
+       maven {
+            allowInsecureProtocol = true
+            url "http://cloudartifact.ipd.hihonor.com/artifactory/maven-virtual"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "http://cloudartifact.ipd.hihonor.com/artifactory/Product-binaryuikithihonor-release"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "http://cmc.cloudartifact.dragon.tools.hihonor.com/artifactory/Product-ApkBinary-release"
+        }
+        // 配置SDK的Maven仓地址。
+        maven {
+            allowInsecureProtocol = true
+            url 'https://developer.honor.com/repo'
+        }
+    }
+    dependencies {
+        // 增加asplugin插件配置，推荐您使用最新版本。
+        classpath 'com.hihonor.mcs:asplugin:2.0.1.300'
+        classpath "com.android.tools.build:gradle:4.1.2"
+    }
+}
+
+allprojects {
+    repositories {
+        maven {
+            allowInsecureProtocol = true
+            url "http://cloudartifact.ipd.hihonor.com/artifactory/maven-virtual"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "http://cloudartifact.ipd.hihonor.com/artifactory/Product-binaryuikithihonor-release"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "http://cmc.cloudartifact.dragon.tools.hihonor.com/artifactory/Product-ApkBinary-release"
+        }
+        // 配置SDK的Maven仓地址。
+        maven {
+            allowInsecureProtocol = true
+            url 'https://developer.honor.com/repo'
+        }
+    }
+}
+
+ext {
+    serviceVersionCode = 70000010
+    serviceVersionName = '7.0.0.010'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
