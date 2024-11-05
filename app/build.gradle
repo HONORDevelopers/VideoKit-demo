@@ -1,0 +1,85 @@
+plugins {
+    id 'com.android.application'
+    id 'com.hihonor.mcs.asplugin'
+}
+
+android {
+    compileSdkVersion 32
+    buildToolsVersion '30.0.2'
+
+    defaultConfig {
+        applicationId "com.hihonor.videokit"
+        minSdk 24
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            // 根据您实际的签名信息，替换以下参数中的xxxx
+            keyAlias 'android'
+            keyPassword 'android'
+            storeFile file('android.jks')
+            storePassword 'android'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.config
+        }
+        release {
+            signingConfig signingConfigs.config
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility "1.8"
+        targetCompatibility "1.8"
+    }
+    packagingOptions {
+        pickFirst '**/libnpu.so'
+    }
+
+    defaultConfig {
+        ndk {
+            abiFilters 'arm64-v8a'
+            // ldLibs "EGL","GLESv3"
+        }
+        externalNativeBuild {
+            cmake {
+                abiFilters 'arm64-v8a'
+                cppFlags ""
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.18.1'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs'] //指定lib库目录
+        }
+    }
+    ndkVersion '25.2.9519653'
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.core:core:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.hihonor.mcs:media-video:1.0.1.+'
+}

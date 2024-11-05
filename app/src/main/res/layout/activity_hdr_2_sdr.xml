@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background"
+        android:onClick="playHdrVideo"
+        android:layout_margin="10dp"
+        android:text="播放源HDR视频"
+        android:textAllCaps="false"/>
+
+    <FrameLayout
+        android:layout_width="150dp"
+        android:layout_height="270dp"
+        android:layout_gravity="center">
+        <SurfaceView
+            android:id="@+id/surfaceview_hdr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"/>
+    </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background"
+        android:onClick="playSdrVideo"
+        android:text="播放源SDR视频"
+        android:layout_margin="10dp"
+        android:textAllCaps="false"/>
+
+    <FrameLayout
+        android:layout_width="150dp"
+        android:layout_height="270dp"
+        android:layout_gravity="center">
+
+        <SurfaceView
+            android:id="@+id/surfaceview_sdr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+</LinearLayout>
